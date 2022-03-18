@@ -77,6 +77,8 @@ list-style: none;
     border-bottom: 10px solid transparent;
     opacity: .5;
     transition: opacity .6s ease;
+    color: transparent;
+    text-shadow: 0 0 0 black;
     `;
 
         if (i == 0) {
