@@ -1,8 +1,8 @@
 ## Лeгенький слайдер на Js
-[потыкать сам слайдер](https://aquariids.github.io/Simple-slider/)<br>
+[Потыкать сам слайдер](https://aquariids.github.io/Simple-slider/)<br>
 
 
-## Разбираю javaScript код
+## Разбираем javaScript код
 ```javaScript
 function slider ({container,slide,nextArrow,prevArrow,totalCounter,currentCounter,wrapper,field}) {
     const slides = document.querySelectorAll(slide),
