@@ -1,4 +1,4 @@
-function slider ({container,slide,nextArrow,prevArrow,totalCounter,currentCounter,wrapper,field}) {
+function slider({ container, slide, nextArrow, prevArrow, totalCounter, currentCounter, wrapper, field }) {
     const slides = document.querySelectorAll(slide),
         slider = document.querySelector(container),
         slidesWrapper = document.querySelector(wrapper),
@@ -7,7 +7,11 @@ function slider ({container,slide,nextArrow,prevArrow,totalCounter,currentCounte
         next = document.querySelector(nextArrow),
         total = document.querySelector(totalCounter),
         current = document.querySelector(currentCounter),
-        width = window.getComputedStyle(slidesWrapper).width;
+        width = slidesWrapper.offsetWidth;
+
+
+
+
     let slideIndex = 1;
     let offset = 0;
 
@@ -22,13 +26,15 @@ function slider ({container,slide,nextArrow,prevArrow,totalCounter,currentCounte
     }
 
     function currentDotSlides() {
+
         dots.forEach(dot => dot.style.opacity = '.5');
         dots[slideIndex - 1].style.opacity = 1;
     }
 
-    function deleteNotDigits(str) {
-        return +str.replace(/\D/g, '');
-    }
+    // function deleteNotDigits(str) {
+    //     return +str.slice(0, width.length - 2);
+    // return +str.replace(/\D/g, '');
+    // }
 
     addedZeroSlides();
     slidesField.style.width = 100 * slides.length + '%';
@@ -80,18 +86,19 @@ list-style: none;
     color: transparent;
     text-shadow: 0 0 0 black;
     `;
-
         if (i == 0) {
             dot.style.opacity = 1;
         }
         indicators.append(dot);
         dots.push(dot);
     }
+
     next.addEventListener('click', () => {
-        if (offset == deleteNotDigits(width) * (slides.length - 1)) {
+        if (offset == width * (slides.length - 1)) {
             offset = 0;
         } else {
-            offset += deleteNotDigits(width);
+            offset += width;
+
         }
         slidesField.style.transform = `translateX(-${offset}px)`;
         if (slideIndex == slides.length) {
@@ -107,9 +114,9 @@ list-style: none;
 
     prev.addEventListener('click', () => {
         if (offset == 0) {
-            offset = deleteNotDigits(width) * (slides.length - 1);
+            offset = width * (slides.length - 1);
         } else {
-            offset -= deleteNotDigits(width);
+            offset -= width;
         }
         slidesField.style.transform = `translateX(-${offset}px)`;
 
@@ -126,9 +133,8 @@ list-style: none;
     dots.forEach(dot => {
         dot.addEventListener('click', (e) => {
             const slideTo = e.target.getAttribute('data-slide-to');
-
             slideIndex = slideTo;
-            offset = +width.slice(0, width.length - 2) * (slideTo - 1);
+            offset = width * (slideTo - 1);
             slidesField.style.transform = `translateX(-${offset}px)`;
 
             addedZeroSlides();
