@@ -8,6 +8,7 @@ function slider({ container, slide, nextArrow, prevArrow, totalCounter, currentC
         total = document.querySelector(totalCounter),
         current = document.querySelector(currentCounter),
         width = slidesWrapper.offsetWidth;
+        // width = window.getComputedStyle(slidesWrapper).width;
 
 
 
